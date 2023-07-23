@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fire_crud/firebase_options.dart';
+import 'user_page.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,34 +45,23 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
-            title: TextField(
-              controller: controller,
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                final name = controller.text;
-
-                createUser(name: name);
-              },
-                icon: const Icon(Icons.add),
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        title: const Text('Home Page'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Navigate to the UserPage when the button is clicked
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const UserPage()),
+            );
+          },
+          child: const Text('Go to User Page'),
+        ),
+      ),
     );
   }
-
-  Future createUser({required String name}) async {
-    final docUser = FirebaseFirestore.instance.collection('users').doc('my-id2');
-
-    final json = {
-      'name': name,
-      'age': 21,
-      'birthday': DateTime(2023,6,29),
-    };
-
-    await docUser.set(json);
-
-  }
 }
+
+
