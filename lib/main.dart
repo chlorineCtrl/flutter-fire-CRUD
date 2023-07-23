@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fire_crud/firebase_options.dart';
+import 'package:flutter_fire_crud/user.dart';
 import 'user_page.dart';
+import 'read_page.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,19 +51,35 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Home Page'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate to the UserPage when the button is clicked
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const UserPage()),
-            );
-          },
-          child: const Text('Go to User Page'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to the UserPage when the button is clicked
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const UserPage()),
+                );
+              },
+              child: const Text('Go to Create Page'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to the ReadPage when the button is clicked
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ReadPage()),
+                );
+              },
+              child: const Text('Go to Read Page'),
+            ),
+          ],
         ),
       ),
     );
   }
+
 }
 
 

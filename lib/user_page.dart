@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'user.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -55,22 +56,4 @@ class _UserPageState extends State<UserPage> {
     final json = user.toJson();
     await docUser.set(json);
   }
-}
-
-class User {
-  String id;
-  final String name;
-  final int age;
-
-  User({
-    this.id = '',
-    required this.name,
-    required this.age
-});
-
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'age': age,
-  };
 }
